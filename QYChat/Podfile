@@ -1,0 +1,25 @@
+platform :ios, '9.0'
+
+target 'QYChat' do
+    
+    use_frameworks!
+    
+    pod 'pop'
+    pod 'Masonry'
+    pod 'CocoaLumberjack'
+    pod 'PopupKit'
+    pod 'IQKeyboardManager'
+    pod 'AFNetworking'
+    pod 'MJRefresh'
+    pod 'YYText'
+    pod 'YYCategories'
+    pod 'FMDB'#数据库
+    pod 'WZLBadge'#小红点
+    pod 'HMSegmentedControl'
+    pod 'SDWebImage'
+    pod 'MBProgressHUD'
+    pod 'DACircularProgress'
+    pod 'QMUIKit'
+    pod 'Texture'
+end
+
