@@ -122,6 +122,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Actions
+
+-(void)loginAction:(id)sender{
+    
+    [self performSegueWithIdentifier:@"showMainView" sender:nil];
+}
+
 #pragma mark - getter and setter
 
 - (UIImageView *)bgImgView{
@@ -169,7 +176,8 @@
         [_userNameField setPlaceholder:@"用户名"];
         [_userNameField setFont:UIFontMake(16)];
         [_userNameField setTextColor:UIColorMakeWithHex(@"#8a8a8a")];
-        
+        [_userNameField setClearButtonMode:UITextFieldViewModeWhileEditing];
+
         UIImageView *imageViewPwd = [[UIImageView alloc]initWithFrame:CGRectMake(10, 0, 30, 20)];
         imageViewPwd.image = [UIImage imageNamed:@"login_account"];
         _userNameField.leftView = imageViewPwd;
@@ -186,6 +194,8 @@
         [_pwdField setPlaceholder:@"密码"];
         [_pwdField setFont:UIFontMake(16)];
         [_pwdField setTextColor:UIColorMakeWithHex(@"#8a8a8a")];
+        [_pwdField setClearButtonMode:UITextFieldViewModeWhileEditing];
+        [_pwdField setSecureTextEntry:YES];
 
         UIImageView *imageViewPwd = [[UIImageView alloc]initWithFrame:CGRectMake(10, 0, 30, 20)];
         imageViewPwd.image = [UIImage imageNamed:@"login_password"];
@@ -201,9 +211,10 @@
     
     if (!_loginBtn) {
         _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_loginBtn addTarget:self action:@selector(loginAction:) forControlEvents:UIControlEventTouchUpInside];
         
         [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
-        [_loginBtn setBackgroundImage:[UIImage qmui_imageWithColor:UIColorMakeWithHex(@"#68bbae") size:CGSizeMake(SCREEN_WIDTH-15*2-20*2, 50) cornerRadius:25] forState:UIControlStateNormal];
+        [_loginBtn setBackgroundImage:[UIImage qmui_imageWithColor:UI_BASE_COLOR size:CGSizeMake(SCREEN_WIDTH-15*2-20*2, 50) cornerRadius:25] forState:UIControlStateNormal];
     }
     
     return _loginBtn;

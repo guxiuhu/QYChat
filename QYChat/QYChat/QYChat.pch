@@ -9,9 +9,13 @@
 #ifndef QYChat_pch
 #define QYChat_pch
 
+#define UI_BASE_COLOR UIColorMakeWithHex(@"#68bbae")
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
 #import <QMUIKit/QMUIKit.h>
 #import <Masonry/Masonry.h>
+#import <pop/POP.h>
+#import <AsyncDisplayKit/AsyncDisplayKit.h>
 
 #endif /* QYChat_pch */

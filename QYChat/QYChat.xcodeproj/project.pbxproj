@@ -8,22 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		4B3CB1642DBAC37069D6C644 /* Pods_QYChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBD0B13F50A41930DD05572D /* Pods_QYChat.framework */; };
+		9621ED6D2088A4CB002CAD7A /* lanch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9621ED6A2088A4CA002CAD7A /* lanch.jpg */; };
+		9621ED6E2088A4CB002CAD7A /* lanch@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9621ED6B2088A4CA002CAD7A /* lanch@3x.jpg */; };
+		9621ED6F2088A4CB002CAD7A /* lanch@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9621ED6C2088A4CB002CAD7A /* lanch@2x.jpg */; };
 		964F08DF20871A1800E397B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 964F08DE20871A1800E397B4 /* AppDelegate.m */; };
 		964F08E520871A1800E397B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 964F08E320871A1800E397B4 /* Main.storyboard */; };
-		964F08E720871A1900E397B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 964F08E620871A1900E397B4 /* Assets.xcassets */; };
 		964F08EA20871A1900E397B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 964F08E820871A1900E397B4 /* LaunchScreen.storyboard */; };
 		964F08ED20871A1900E397B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 964F08EC20871A1900E397B4 /* main.m */; };
 		964F08F720872D0F00E397B4 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 964F08F520872D0F00E397B4 /* QMUIConfigurationTemplate.m */; };
 		964F08FB20872E1900E397B4 /* LoginVCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 964F08FA20872E1900E397B4 /* LoginVCtrl.m */; };
+		964F09002087950900E397B4 /* MsgListVCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 964F08FF2087950900E397B4 /* MsgListVCtrl.m */; };
+		964F09032087951400E397B4 /* PersonalVCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 964F09022087951400E397B4 /* PersonalVCtrl.m */; };
+		964F090720883DDC00E397B4 /* MsgListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 964F090620883DDC00E397B4 /* MsgListCell.m */; };
+		964F0909208896D500E397B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 964F0908208896D400E397B4 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		23606BAA3C59BBADC24CDB4A /* Pods-QYChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QYChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QYChat/Pods-QYChat.debug.xcconfig"; sourceTree = "<group>"; };
+		9621ED6A2088A4CA002CAD7A /* lanch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lanch.jpg; sourceTree = "<group>"; };
+		9621ED6B2088A4CA002CAD7A /* lanch@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "lanch@3x.jpg"; sourceTree = "<group>"; };
+		9621ED6C2088A4CB002CAD7A /* lanch@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "lanch@2x.jpg"; sourceTree = "<group>"; };
 		964F08DA20871A1800E397B4 /* QYChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QYChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		964F08DD20871A1800E397B4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		964F08DE20871A1800E397B4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		964F08E420871A1800E397B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		964F08E620871A1900E397B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		964F08E920871A1900E397B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		964F08EB20871A1900E397B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		964F08EC20871A1900E397B4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -32,6 +40,13 @@
 		964F08F820872D4300E397B4 /* QYChat.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYChat.pch; sourceTree = "<group>"; };
 		964F08F920872E1900E397B4 /* LoginVCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginVCtrl.h; sourceTree = "<group>"; };
 		964F08FA20872E1900E397B4 /* LoginVCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginVCtrl.m; sourceTree = "<group>"; };
+		964F08FE2087950900E397B4 /* MsgListVCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MsgListVCtrl.h; sourceTree = "<group>"; };
+		964F08FF2087950900E397B4 /* MsgListVCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MsgListVCtrl.m; sourceTree = "<group>"; };
+		964F09012087951400E397B4 /* PersonalVCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalVCtrl.h; sourceTree = "<group>"; };
+		964F09022087951400E397B4 /* PersonalVCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalVCtrl.m; sourceTree = "<group>"; };
+		964F090520883DDC00E397B4 /* MsgListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MsgListCell.h; sourceTree = "<group>"; };
+		964F090620883DDC00E397B4 /* MsgListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MsgListCell.m; sourceTree = "<group>"; };
+		964F0908208896D400E397B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBD0B13F50A41930DD05572D /* Pods_QYChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QYChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E945A38217DB702B97FDB3B3 /* Pods-QYChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QYChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-QYChat/Pods-QYChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,12 +92,14 @@
 		964F08DC20871A1800E397B4 /* QYChat */ = {
 			isa = PBXGroup;
 			children = (
+				964F08FD208794D000E397B4 /* MsgListVCtrl */,
+				964F08FC208794D000E397B4 /* PersonalVCtrl */,
 				964F08F420872CF300E397B4 /* PublicMethods */,
 				964F08F320872CD500E397B4 /* LoginVCtrl */,
 				964F08DD20871A1800E397B4 /* AppDelegate.h */,
 				964F08DE20871A1800E397B4 /* AppDelegate.m */,
+				964F0908208896D400E397B4 /* Assets.xcassets */,
 				964F08E320871A1800E397B4 /* Main.storyboard */,
-				964F08E620871A1900E397B4 /* Assets.xcassets */,
 				964F08E820871A1900E397B4 /* LaunchScreen.storyboard */,
 				964F08EB20871A1900E397B4 /* Info.plist */,
 				964F08EC20871A1900E397B4 /* main.m */,
@@ -103,10 +120,41 @@
 		964F08F420872CF300E397B4 /* PublicMethods */ = {
 			isa = PBXGroup;
 			children = (
+				9621ED6A2088A4CA002CAD7A /* lanch.jpg */,
+				9621ED6C2088A4CB002CAD7A /* lanch@2x.jpg */,
+				9621ED6B2088A4CA002CAD7A /* lanch@3x.jpg */,
 				964F08F620872D0F00E397B4 /* QMUIConfigurationTemplate.h */,
 				964F08F520872D0F00E397B4 /* QMUIConfigurationTemplate.m */,
 			);
 			path = PublicMethods;
+			sourceTree = "<group>";
+		};
+		964F08FC208794D000E397B4 /* PersonalVCtrl */ = {
+			isa = PBXGroup;
+			children = (
+				964F09012087951400E397B4 /* PersonalVCtrl.h */,
+				964F09022087951400E397B4 /* PersonalVCtrl.m */,
+			);
+			path = PersonalVCtrl;
+			sourceTree = "<group>";
+		};
+		964F08FD208794D000E397B4 /* MsgListVCtrl */ = {
+			isa = PBXGroup;
+			children = (
+				964F090420883D9300E397B4 /* Views */,
+				964F08FE2087950900E397B4 /* MsgListVCtrl.h */,
+				964F08FF2087950900E397B4 /* MsgListVCtrl.m */,
+			);
+			path = MsgListVCtrl;
+			sourceTree = "<group>";
+		};
+		964F090420883D9300E397B4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				964F090520883DDC00E397B4 /* MsgListCell.h */,
+				964F090620883DDC00E397B4 /* MsgListCell.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B16BD6969074B8D2D35FDF7E /* Pods */ = {
@@ -179,8 +227,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				964F08EA20871A1900E397B4 /* LaunchScreen.storyboard in Resources */,
-				964F08E720871A1900E397B4 /* Assets.xcassets in Resources */,
+				964F0909208896D500E397B4 /* Assets.xcassets in Resources */,
+				9621ED6D2088A4CB002CAD7A /* lanch.jpg in Resources */,
+				9621ED6E2088A4CB002CAD7A /* lanch@3x.jpg in Resources */,
 				964F08E520871A1800E397B4 /* Main.storyboard in Resources */,
+				9621ED6F2088A4CB002CAD7A /* lanch@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,8 +334,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				964F09002087950900E397B4 /* MsgListVCtrl.m in Sources */,
+				964F09032087951400E397B4 /* PersonalVCtrl.m in Sources */,
 				964F08ED20871A1900E397B4 /* main.m in Sources */,
 				964F08FB20872E1900E397B4 /* LoginVCtrl.m in Sources */,
+				964F090720883DDC00E397B4 /* MsgListCell.m in Sources */,
 				964F08F720872D0F00E397B4 /* QMUIConfigurationTemplate.m in Sources */,
 				964F08DF20871A1800E397B4 /* AppDelegate.m in Sources */,
 			);
@@ -431,6 +485,7 @@
 				DEVELOPMENT_TEAM = 75CW652CU7;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/QYChat/QYChat.pch";
 				INFOPLIST_FILE = QYChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -449,16 +504,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 75CW652CU7;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/QYChat/QYChat.pch";
 				INFOPLIST_FILE = QYChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nantian.QYChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "a2be60b9-d104-4a81-95e8-960ee910ca08";
+				PROVISIONING_PROFILE_SPECIFIER = ntdevelop;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
