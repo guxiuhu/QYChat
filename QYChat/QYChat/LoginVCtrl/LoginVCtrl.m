@@ -7,6 +7,10 @@
 //
 
 #import "LoginVCtrl.h"
+#import "CompletionDefine.h"
+#import "IMClientManager.h"
+#import "LocalUDPDataSender.h"
+#import "OnLoginProgress.h"
 
 @interface LoginVCtrl ()
 
@@ -27,6 +31,14 @@
 
 ///登录按钮
 @property (nonatomic, strong) UIButton *loginBtn;
+
+
+/* 登陆进度提示 */
+@property (nonatomic) OnLoginProgress *onLoginProgress;
+
+/* 收到服务端的登陆完成反馈时要通知的观察者（因登陆是异步实现，本观察者将由
+ *  ChatBaseEvent 事件的处理者在收到服务端的登陆反馈后通知之）*/
+@property (nonatomic, copy) ObserverCompletion onLoginSucessObserver;// block代码块一定要用copy属性，否则报错！
 
 @end
 
@@ -115,6 +127,73 @@
         make.bottom.equalTo(self.view).with.offset(-15);
         make.height.mas_equalTo(15);
     }];
+    
+    
+    __weak __typeof(self)weakSelf = self;
+    
+    // 实例化登陆进度提示封装类
+    self.onLoginProgress = [[OnLoginProgress alloc] init];
+    // 设置登陆超时回调（将在登陆进度提示封装类中使用）
+    [self.onLoginProgress setOnLoginTimeoutObserver:^(id observerble ,id data) {
+        
+        [QMUITips hideAllTips];
+
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"超时了" message:@"登陆超时，可能是网络故障或服务器无法连接，是否重试？" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [weakSelf.onLoginProgress showProgressing:NO onParent:weakSelf.view];
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"重试" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [weakSelf loginAction:nil];
+        }]];
+        [weakSelf presentViewController:alert animated:YES completion:nil];
+
+    }];
+    // 准备好异步登陆结果回调block（将在登陆方法中使用）
+    self.onLoginSucessObserver = ^(id observerble ,id data) {
+        // * 已收到服务端登陆反馈则当然应立即取消显示登陆进度条
+        [weakSelf.onLoginProgress showProgressing:NO onParent:weakSelf.view];
+        // 服务端返回的登陆结果值
+        int code = [(NSNumber *)data intValue];
+        // 登陆成功
+        if(code == 0)
+        {
+            [QMUITips hideAllTips];
+
+            NSString *saveUserName = [PublicMethods getObjFromUserdefaultsWithKey:SAVE_LOGIN_USER_ACCOUNT];
+            NSString *savePasswrod = [PublicMethods getObjFromUserdefaultsWithKey:SAVE_LOGIN_USER_PASSWORD];
+            
+            if (([saveUserName isEqualToString:@""]) && ([savePasswrod isEqualToString:@""])) {
+                //保存用户名密码
+                [PublicMethods saveToUserdefaultsWithKey:SAVE_LOGIN_USER_ACCOUNT andObj:[weakSelf.userNameField.text qmui_trim]];
+                [PublicMethods saveToUserdefaultsWithKey:SAVE_LOGIN_USER_PASSWORD andObj:[weakSelf.pwdField.text qmui_trim]];
+            }
+            
+            // 进入主界面
+            [weakSelf performSegueWithIdentifier:@"showMainView" sender:nil];
+        }
+        // 登陆失败
+        else
+        {
+            [QMUITips hideAllTips];
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"友情提示" message:[NSString stringWithFormat:@"Sorry，登陆失败，错误码=%d", code] preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [weakSelf.onLoginProgress showProgressing:NO onParent:weakSelf.view];
+            }]];
+            [weakSelf presentViewController:alert animated:YES completion:nil];
+        }
+        
+        //## try to bug FIX ! 20160810：此observer本身执行完成才设置为nil，解决之前过早被nil而导致有时怎么也无法跳过登陆界面的问题
+        // * 取消设置好服务端反馈的登陆结果观察者（当客户端收到服务端反馈过来的登陆消息时将被通知）【1】
+        [[[IMClientManager sharedInstance] getBaseEventListener] setLoginOkForLaunchObserver:nil];
+    };
+    
+    NSString *saveUserName = [PublicMethods getObjFromUserdefaultsWithKey:SAVE_LOGIN_USER_ACCOUNT];
+    NSString *savePasswrod = [PublicMethods getObjFromUserdefaultsWithKey:SAVE_LOGIN_USER_PASSWORD];
+    
+    if ((![saveUserName isEqualToString:@""]) && (![savePasswrod isEqualToString:@""])) {
+        [self handleLoginWithUserName:saveUserName andPassword:savePasswrod];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -124,9 +203,39 @@
 
 #pragma mark - Actions
 
+- (void)handleLoginWithUserName:(NSString*)userName andPassword:(NSString*)password{
+    [self.onLoginProgress showProgressing:YES onParent:self.view];
+    // * 设置好服务端反馈的登陆结果观察者（当客户端收到服务端反馈过来的登陆消息时将被通知）【2】
+    [[[IMClientManager sharedInstance] getBaseEventListener] setLoginOkForLaunchObserver:self.onLoginSucessObserver];
+    
+    // * 发送登陆数据包(提交登陆名和密码)
+    int code = [[LocalUDPDataSender sharedInstance] sendLogin:userName withToken:password];
+    if(code == COMMON_CODE_OK){
+        
+    }else{
+        
+        NSString *msg = [NSString stringWithFormat:@"登陆请求发送失败，错误码：%d", code];
+        [QMUITips showInfo:msg inView:DefaultTipsParentView hideAfterDelay:2];
+        
+        // * 登陆信息没有成功发出时当然无条件取消显示登陆进度条
+        [self.onLoginProgress showProgressing:NO onParent:self.view];
+    }
+}
+
 -(void)loginAction:(id)sender{
     
-    [self performSegueWithIdentifier:@"showMainView" sender:nil];
+    if ([[self.userNameField.text qmui_trim] isEqualToString:@""]) {
+        [QMUITips showInfo:@"用户名不能为空" inView:DefaultTipsParentView hideAfterDelay:2];
+        return;
+    }
+    
+    if ([[self.pwdField.text qmui_trim] isEqualToString:@""]) {
+        [QMUITips showInfo:@"用户名不能为空" inView:DefaultTipsParentView hideAfterDelay:2];
+        return;
+    }
+    
+    // * 立即显示登陆处理进度提示（并将同时启动超时检查线程）
+    [self handleLoginWithUserName:[self.userNameField.text qmui_trim] andPassword:[self.pwdField.text qmui_trim]];
 }
 
 #pragma mark - getter and setter
@@ -201,7 +310,6 @@
         imageViewPwd.image = [UIImage imageNamed:@"login_password"];
         _pwdField.leftView = imageViewPwd;
         _pwdField.leftViewMode = UITextFieldViewModeAlways; //此处用来设置leftview现实时机
-
     }
     
     return _pwdField;
@@ -219,4 +327,5 @@
     
     return _loginBtn;
 }
+
 @end

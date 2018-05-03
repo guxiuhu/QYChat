@@ -8,6 +8,11 @@
 
 #import "MsgListCell.h"
 
+@interface MsgListCell()
+
+@end
+
 @implementation MsgListCell
+
 
 @end

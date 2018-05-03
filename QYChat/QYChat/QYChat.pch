@@ -16,6 +16,9 @@
 #import <QMUIKit/QMUIKit.h>
 #import <Masonry/Masonry.h>
 #import <pop/POP.h>
-#import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import "PublicMethods.h"
+
+#define SAVE_LOGIN_USER_ACCOUNT @"save_login_account"//保存用户名
+#define SAVE_LOGIN_USER_PASSWORD @"save_login_password"//保存用户密码
 
 #endif /* QYChat_pch */

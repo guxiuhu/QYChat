@@ -29,21 +29,6 @@ PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
   - MJRefresh (3.1.15.3)
-  - PINCache (3.0.1-beta.6):
-    - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
-    - PINCache/Core (= 3.0.1-beta.6)
-  - PINCache/Arc-exception-safe (3.0.1-beta.6):
-    - PINCache/Core
-  - PINCache/Core (3.0.1-beta.6):
-    - PINOperation (~> 1.1.0)
-  - PINOperation (1.1.1)
-  - PINRemoteImage/Core (3.0.0-beta.13):
-    - PINOperation
-  - PINRemoteImage/iOS (3.0.0-beta.13):
-    - PINRemoteImage/Core
-  - PINRemoteImage/PINCache (3.0.0-beta.13):
-    - PINCache (= 3.0.1-beta.6)
-    - PINRemoteImage/Core
   - pop (1.0.10)
   - PopupKit (3.1.1)
   - QMUIKit (2.5.1):
@@ -278,13 +263,6 @@ PODS:
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
-  - Texture (2.6):
-    - Texture/PINRemoteImage (= 2.6)
-  - Texture/Core (2.6)
-  - Texture/PINRemoteImage (2.6):
-    - PINRemoteImage/iOS (= 3.0.0-beta.13)
-    - PINRemoteImage/PINCache
-    - Texture/Core
   - WZLBadge (1.2.6)
   - YYCategories (1.0.4):
     - YYCategories/no-arc (= 1.0.4)
@@ -305,7 +283,6 @@ DEPENDENCIES:
   - PopupKit
   - QMUIKit
   - SDWebImage
-  - Texture
   - WZLBadge
   - YYCategories
   - YYText
@@ -320,18 +297,14 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
-  PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
-  PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
-  PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   PopupKit: e362ed92148d831a9c38a2bc7a25893e46d64c54
   QMUIKit: d52e7a8b08680d5286c8d2f9e625497f097f89bd
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
-  Texture: 7249074582daf75e524e59df5428b66b8e8db0e4
   WZLBadge: 9ec779dcfd94c825518b395e8315fccaabff1bfa
   YYCategories: 6bcd4314c6661a561410dce4a793379ebd306abd
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 30135f89762d96f2ebb9b6735ad6af43de5e33a0
+PODFILE CHECKSUM: 74e723b9b0cb88963b63b01f0ec32b129a188bd1
 
 COCOAPODS: 1.3.1

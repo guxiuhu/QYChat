@@ -21,6 +21,13 @@
 		964F09032087951400E397B4 /* PersonalVCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 964F09022087951400E397B4 /* PersonalVCtrl.m */; };
 		964F090720883DDC00E397B4 /* MsgListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 964F090620883DDC00E397B4 /* MsgListCell.m */; };
 		964F0909208896D500E397B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 964F0908208896D400E397B4 /* Assets.xcassets */; };
+		966EC761209AB1F900CE7E2A /* PublicMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 966EC760209AB1F900CE7E2A /* PublicMethods.m */; };
+		96C8947D208C9E16001620EA /* libMobileIMSDK4iX_common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C8947C208C9E16001620EA /* libMobileIMSDK4iX_common.a */; };
+		96C89480208C9EF0001620EA /* IMClientManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C8947E208C9EF0001620EA /* IMClientManager.m */; };
+		96C89483208C9F60001620EA /* ChatBaseEventImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C89481208C9F60001620EA /* ChatBaseEventImpl.m */; };
+		96C89488208C9F84001620EA /* ChatTransDataEventImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C89484208C9F84001620EA /* ChatTransDataEventImpl.m */; };
+		96C89489208C9F84001620EA /* MessageQoSEventImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C89485208C9F84001620EA /* MessageQoSEventImpl.m */; };
+		96C8948C208CB43D001620EA /* OnLoginProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C8948A208CB43C001620EA /* OnLoginProgress.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +54,45 @@
 		964F090520883DDC00E397B4 /* MsgListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MsgListCell.h; sourceTree = "<group>"; };
 		964F090620883DDC00E397B4 /* MsgListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MsgListCell.m; sourceTree = "<group>"; };
 		964F0908208896D400E397B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		966EC75F209AB1F900CE7E2A /* PublicMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicMethods.h; sourceTree = "<group>"; };
+		966EC760209AB1F900CE7E2A /* PublicMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicMethods.m; sourceTree = "<group>"; };
+		96C89462208C9E16001620EA /* PKeepAliveResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKeepAliveResponse.h; sourceTree = "<group>"; };
+		96C89463208C9E16001620EA /* NSMutableDictionary+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Ext.h"; sourceTree = "<group>"; };
+		96C89464208C9E16001620EA /* LocalUDPDataReciever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalUDPDataReciever.h; sourceTree = "<group>"; };
+		96C89465208C9E16001620EA /* ErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorCode.h; sourceTree = "<group>"; };
+		96C89466208C9E16001620EA /* PErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PErrorResponse.h; sourceTree = "<group>"; };
+		96C89467208C9E16001620EA /* ClientCoreSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientCoreSDK.h; sourceTree = "<group>"; };
+		96C89468208C9E16001620EA /* QoS4ReciveDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QoS4ReciveDaemon.h; sourceTree = "<group>"; };
+		96C89469208C9E16001620EA /* ProtocalType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocalType.h; sourceTree = "<group>"; };
+		96C8946A208C9E16001620EA /* ChatBaseEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBaseEvent.h; sourceTree = "<group>"; };
+		96C8946B208C9E16001620EA /* AutoReLoginDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoReLoginDaemon.h; sourceTree = "<group>"; };
+		96C8946C208C9E16001620EA /* MessageQoSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageQoSEvent.h; sourceTree = "<group>"; };
+		96C8946D208C9E16001620EA /* Protocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Protocal.h; sourceTree = "<group>"; };
+		96C8946E208C9E16001620EA /* PLoginInfoResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLoginInfoResponse.h; sourceTree = "<group>"; };
+		96C8946F208C9E16001620EA /* LocalUDPSocketProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalUDPSocketProvider.h; sourceTree = "<group>"; };
+		96C89470208C9E16001620EA /* ToolKits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolKits.h; sourceTree = "<group>"; };
+		96C89471208C9E16001620EA /* QoS4SendDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QoS4SendDaemon.h; sourceTree = "<group>"; };
+		96C89472208C9E16001620EA /* UDPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPUtils.h; sourceTree = "<group>"; };
+		96C89473208C9E16001620EA /* PKeepAlive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKeepAlive.h; sourceTree = "<group>"; };
+		96C89474208C9E16001620EA /* PLoginInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLoginInfo.h; sourceTree = "<group>"; };
+		96C89475208C9E16001620EA /* LocalUDPDataSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalUDPDataSender.h; sourceTree = "<group>"; };
+		96C89476208C9E16001620EA /* ChatTransDataEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTransDataEvent.h; sourceTree = "<group>"; };
+		96C89477208C9E16001620EA /* CompletionDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionDefine.h; sourceTree = "<group>"; };
+		96C89478208C9E16001620EA /* KeepAliveDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepAliveDaemon.h; sourceTree = "<group>"; };
+		96C89479208C9E16001620EA /* ConfigEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigEntity.h; sourceTree = "<group>"; };
+		96C8947A208C9E16001620EA /* ProtocalFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocalFactory.h; sourceTree = "<group>"; };
+		96C8947B208C9E16001620EA /* CharsetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharsetHelper.h; sourceTree = "<group>"; };
+		96C8947C208C9E16001620EA /* libMobileIMSDK4iX_common.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobileIMSDK4iX_common.a; sourceTree = "<group>"; };
+		96C8947E208C9EF0001620EA /* IMClientManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMClientManager.m; sourceTree = "<group>"; };
+		96C8947F208C9EF0001620EA /* IMClientManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMClientManager.h; sourceTree = "<group>"; };
+		96C89481208C9F60001620EA /* ChatBaseEventImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatBaseEventImpl.m; sourceTree = "<group>"; };
+		96C89482208C9F60001620EA /* ChatBaseEventImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBaseEventImpl.h; sourceTree = "<group>"; };
+		96C89484208C9F84001620EA /* ChatTransDataEventImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTransDataEventImpl.m; sourceTree = "<group>"; };
+		96C89485208C9F84001620EA /* MessageQoSEventImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageQoSEventImpl.m; sourceTree = "<group>"; };
+		96C89486208C9F84001620EA /* ChatTransDataEventImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTransDataEventImpl.h; sourceTree = "<group>"; };
+		96C89487208C9F84001620EA /* MessageQoSEventImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageQoSEventImpl.h; sourceTree = "<group>"; };
+		96C8948A208CB43C001620EA /* OnLoginProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnLoginProgress.m; sourceTree = "<group>"; };
+		96C8948B208CB43C001620EA /* OnLoginProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnLoginProgress.h; sourceTree = "<group>"; };
 		DBD0B13F50A41930DD05572D /* Pods_QYChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QYChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E945A38217DB702B97FDB3B3 /* Pods-QYChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QYChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-QYChat/Pods-QYChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,6 +103,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B3CB1642DBAC37069D6C644 /* Pods_QYChat.framework in Frameworks */,
+				96C8947D208C9E16001620EA /* libMobileIMSDK4iX_common.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +158,8 @@
 		964F08F320872CD500E397B4 /* LoginVCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				96C8948B208CB43C001620EA /* OnLoginProgress.h */,
+				96C8948A208CB43C001620EA /* OnLoginProgress.m */,
 				964F08F920872E1900E397B4 /* LoginVCtrl.h */,
 				964F08FA20872E1900E397B4 /* LoginVCtrl.m */,
 			);
@@ -120,6 +169,9 @@
 		964F08F420872CF300E397B4 /* PublicMethods */ = {
 			isa = PBXGroup;
 			children = (
+				966EC75F209AB1F900CE7E2A /* PublicMethods.h */,
+				966EC760209AB1F900CE7E2A /* PublicMethods.m */,
+				96C89213208C8997001620EA /* OtherclassLibs */,
 				9621ED6A2088A4CA002CAD7A /* lanch.jpg */,
 				9621ED6C2088A4CB002CAD7A /* lanch@2x.jpg */,
 				9621ED6B2088A4CA002CAD7A /* lanch@3x.jpg */,
@@ -155,6 +207,80 @@
 				964F090620883DDC00E397B4 /* MsgListCell.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		96C89213208C8997001620EA /* OtherclassLibs */ = {
+			isa = PBXGroup;
+			children = (
+				96C8945E208C9E16001620EA /* MobileIMSDK4iLib */,
+			);
+			path = OtherclassLibs;
+			sourceTree = "<group>";
+		};
+		96C8945E208C9E16001620EA /* MobileIMSDK4iLib */ = {
+			isa = PBXGroup;
+			children = (
+				96C89486208C9F84001620EA /* ChatTransDataEventImpl.h */,
+				96C89484208C9F84001620EA /* ChatTransDataEventImpl.m */,
+				96C89487208C9F84001620EA /* MessageQoSEventImpl.h */,
+				96C89485208C9F84001620EA /* MessageQoSEventImpl.m */,
+				96C89482208C9F60001620EA /* ChatBaseEventImpl.h */,
+				96C89481208C9F60001620EA /* ChatBaseEventImpl.m */,
+				96C8947F208C9EF0001620EA /* IMClientManager.h */,
+				96C8947E208C9EF0001620EA /* IMClientManager.m */,
+				96C8945F208C9E16001620EA /* usr */,
+				96C8947C208C9E16001620EA /* libMobileIMSDK4iX_common.a */,
+			);
+			path = MobileIMSDK4iLib;
+			sourceTree = "<group>";
+		};
+		96C8945F208C9E16001620EA /* usr */ = {
+			isa = PBXGroup;
+			children = (
+				96C89460208C9E16001620EA /* local */,
+			);
+			path = usr;
+			sourceTree = "<group>";
+		};
+		96C89460208C9E16001620EA /* local */ = {
+			isa = PBXGroup;
+			children = (
+				96C89461208C9E16001620EA /* include */,
+			);
+			path = local;
+			sourceTree = "<group>";
+		};
+		96C89461208C9E16001620EA /* include */ = {
+			isa = PBXGroup;
+			children = (
+				96C89462208C9E16001620EA /* PKeepAliveResponse.h */,
+				96C89463208C9E16001620EA /* NSMutableDictionary+Ext.h */,
+				96C89464208C9E16001620EA /* LocalUDPDataReciever.h */,
+				96C89465208C9E16001620EA /* ErrorCode.h */,
+				96C89466208C9E16001620EA /* PErrorResponse.h */,
+				96C89467208C9E16001620EA /* ClientCoreSDK.h */,
+				96C89468208C9E16001620EA /* QoS4ReciveDaemon.h */,
+				96C89469208C9E16001620EA /* ProtocalType.h */,
+				96C8946A208C9E16001620EA /* ChatBaseEvent.h */,
+				96C8946B208C9E16001620EA /* AutoReLoginDaemon.h */,
+				96C8946C208C9E16001620EA /* MessageQoSEvent.h */,
+				96C8946D208C9E16001620EA /* Protocal.h */,
+				96C8946E208C9E16001620EA /* PLoginInfoResponse.h */,
+				96C8946F208C9E16001620EA /* LocalUDPSocketProvider.h */,
+				96C89470208C9E16001620EA /* ToolKits.h */,
+				96C89471208C9E16001620EA /* QoS4SendDaemon.h */,
+				96C89472208C9E16001620EA /* UDPUtils.h */,
+				96C89473208C9E16001620EA /* PKeepAlive.h */,
+				96C89474208C9E16001620EA /* PLoginInfo.h */,
+				96C89475208C9E16001620EA /* LocalUDPDataSender.h */,
+				96C89476208C9E16001620EA /* ChatTransDataEvent.h */,
+				96C89477208C9E16001620EA /* CompletionDefine.h */,
+				96C89478208C9E16001620EA /* KeepAliveDaemon.h */,
+				96C89479208C9E16001620EA /* ConfigEntity.h */,
+				96C8947A208C9E16001620EA /* ProtocalFactory.h */,
+				96C8947B208C9E16001620EA /* CharsetHelper.h */,
+			);
+			path = include;
 			sourceTree = "<group>";
 		};
 		B16BD6969074B8D2D35FDF7E /* Pods */ = {
@@ -269,13 +395,9 @@
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
-				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
-				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupKit/PopupKit.framework",
 				"${BUILT_PRODUCTS_DIR}/QMUIKit/QMUIKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/Texture/AsyncDisplayKit.framework",
 				"${BUILT_PRODUCTS_DIR}/WZLBadge/WZLBadge.framework",
 				"${BUILT_PRODUCTS_DIR}/YYCategories/YYCategories.framework",
 				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
@@ -292,13 +414,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QMUIKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WZLBadge.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCategories.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
@@ -336,8 +454,14 @@
 			files = (
 				964F09002087950900E397B4 /* MsgListVCtrl.m in Sources */,
 				964F09032087951400E397B4 /* PersonalVCtrl.m in Sources */,
+				96C89489208C9F84001620EA /* MessageQoSEventImpl.m in Sources */,
+				96C8948C208CB43D001620EA /* OnLoginProgress.m in Sources */,
+				96C89483208C9F60001620EA /* ChatBaseEventImpl.m in Sources */,
 				964F08ED20871A1900E397B4 /* main.m in Sources */,
+				966EC761209AB1F900CE7E2A /* PublicMethods.m in Sources */,
 				964F08FB20872E1900E397B4 /* LoginVCtrl.m in Sources */,
+				96C89488208C9F84001620EA /* ChatTransDataEventImpl.m in Sources */,
+				96C89480208C9EF0001620EA /* IMClientManager.m in Sources */,
 				964F090720883DDC00E397B4 /* MsgListCell.m in Sources */,
 				964F08F720872D0F00E397B4 /* QMUIConfigurationTemplate.m in Sources */,
 				964F08DF20871A1800E397B4 /* AppDelegate.m in Sources */,
@@ -490,6 +614,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/QYChat/PublicMethods/OtherclassLibs/MobileIMSDK4iLib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nantian.QYChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a2be60b9-d104-4a81-95e8-960ee910ca08";
@@ -503,6 +631,7 @@
 			baseConfigurationReference = E945A38217DB702B97FDB3B3 /* Pods-QYChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 75CW652CU7;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/QYChat/QYChat.pch";
@@ -512,10 +641,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/QYChat/PublicMethods/OtherclassLibs/MobileIMSDK4iLib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nantian.QYChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a2be60b9-d104-4a81-95e8-960ee910ca08";
-				PROVISIONING_PROFILE_SPECIFIER = ntdevelop;
+				PROVISIONING_PROFILE = "8cc930ec-d4fb-4b5a-9d07-180d11338103";
+				PROVISIONING_PROFILE_SPECIFIER = QYChat_in;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

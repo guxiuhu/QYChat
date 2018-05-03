@@ -1,9 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
 platform :ios, '9.0'
 
 target 'QYChat' do
     
-    use_frameworks!
-    
+   use_frameworks!
+
     pod 'pop'
     pod 'Masonry'
     pod 'CocoaLumberjack'
@@ -20,6 +22,5 @@ target 'QYChat' do
     pod 'MBProgressHUD'
     pod 'DACircularProgress'
     pod 'QMUIKit'
-    pod 'Texture'
 end
 
