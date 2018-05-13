@@ -22,5 +22,6 @@ target 'QYChat' do
     pod 'MBProgressHUD'
     pod 'DACircularProgress'
     pod 'QMUIKit'
+    pod 'MJExtension'
 end
 

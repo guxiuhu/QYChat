@@ -21,7 +21,11 @@
 		964F09032087951400E397B4 /* PersonalVCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 964F09022087951400E397B4 /* PersonalVCtrl.m */; };
 		964F090720883DDC00E397B4 /* MsgListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 964F090620883DDC00E397B4 /* MsgListCell.m */; };
 		964F0909208896D500E397B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 964F0908208896D400E397B4 /* Assets.xcassets */; };
+		9650F98E20A814C1005D7219 /* ChatListDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 9650F98D20A814C1005D7219 /* ChatListDB.m */; };
 		966EC761209AB1F900CE7E2A /* PublicMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 966EC760209AB1F900CE7E2A /* PublicMethods.m */; };
+		966EC768209ADFC300CE7E2A /* MsgListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 966EC766209ADFC200CE7E2A /* MsgListItem.m */; };
+		966EC76C209AF62D00CE7E2A /* ChatVCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 966EC76B209AF62D00CE7E2A /* ChatVCtrl.m */; };
+		966EC76F209AFA7B00CE7E2A /* ChatInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 966EC76E209AFA7B00CE7E2A /* ChatInputView.m */; };
 		96C8947D208C9E16001620EA /* libMobileIMSDK4iX_common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C8947C208C9E16001620EA /* libMobileIMSDK4iX_common.a */; };
 		96C89480208C9EF0001620EA /* IMClientManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C8947E208C9EF0001620EA /* IMClientManager.m */; };
 		96C89483208C9F60001620EA /* ChatBaseEventImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C89481208C9F60001620EA /* ChatBaseEventImpl.m */; };
@@ -54,8 +58,16 @@
 		964F090520883DDC00E397B4 /* MsgListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MsgListCell.h; sourceTree = "<group>"; };
 		964F090620883DDC00E397B4 /* MsgListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MsgListCell.m; sourceTree = "<group>"; };
 		964F0908208896D400E397B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9650F98C20A814C1005D7219 /* ChatListDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatListDB.h; sourceTree = "<group>"; };
+		9650F98D20A814C1005D7219 /* ChatListDB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatListDB.m; sourceTree = "<group>"; };
 		966EC75F209AB1F900CE7E2A /* PublicMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicMethods.h; sourceTree = "<group>"; };
 		966EC760209AB1F900CE7E2A /* PublicMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicMethods.m; sourceTree = "<group>"; };
+		966EC766209ADFC200CE7E2A /* MsgListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgListItem.m; sourceTree = "<group>"; };
+		966EC767209ADFC200CE7E2A /* MsgListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgListItem.h; sourceTree = "<group>"; };
+		966EC76A209AF62D00CE7E2A /* ChatVCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatVCtrl.h; sourceTree = "<group>"; };
+		966EC76B209AF62D00CE7E2A /* ChatVCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatVCtrl.m; sourceTree = "<group>"; };
+		966EC76D209AFA7B00CE7E2A /* ChatInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatInputView.h; sourceTree = "<group>"; };
+		966EC76E209AFA7B00CE7E2A /* ChatInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatInputView.m; sourceTree = "<group>"; };
 		96C89462208C9E16001620EA /* PKeepAliveResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKeepAliveResponse.h; sourceTree = "<group>"; };
 		96C89463208C9E16001620EA /* NSMutableDictionary+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Ext.h"; sourceTree = "<group>"; };
 		96C89464208C9E16001620EA /* LocalUDPDataReciever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalUDPDataReciever.h; sourceTree = "<group>"; };
@@ -139,6 +151,7 @@
 		964F08DC20871A1800E397B4 /* QYChat */ = {
 			isa = PBXGroup;
 			children = (
+				966EC769209AF61600CE7E2A /* ChatVCtrl */,
 				964F08FD208794D000E397B4 /* MsgListVCtrl */,
 				964F08FC208794D000E397B4 /* PersonalVCtrl */,
 				964F08F420872CF300E397B4 /* PublicMethods */,
@@ -193,6 +206,7 @@
 		964F08FD208794D000E397B4 /* MsgListVCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				966EC765209ADFC200CE7E2A /* Model */,
 				964F090420883D9300E397B4 /* Views */,
 				964F08FE2087950900E397B4 /* MsgListVCtrl.h */,
 				964F08FF2087950900E397B4 /* MsgListVCtrl.m */,
@@ -207,6 +221,28 @@
 				964F090620883DDC00E397B4 /* MsgListCell.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		966EC765209ADFC200CE7E2A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				966EC767209ADFC200CE7E2A /* MsgListItem.h */,
+				966EC766209ADFC200CE7E2A /* MsgListItem.m */,
+				9650F98C20A814C1005D7219 /* ChatListDB.h */,
+				9650F98D20A814C1005D7219 /* ChatListDB.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		966EC769209AF61600CE7E2A /* ChatVCtrl */ = {
+			isa = PBXGroup;
+			children = (
+				966EC76A209AF62D00CE7E2A /* ChatVCtrl.h */,
+				966EC76B209AF62D00CE7E2A /* ChatVCtrl.m */,
+				966EC76D209AFA7B00CE7E2A /* ChatInputView.h */,
+				966EC76E209AFA7B00CE7E2A /* ChatInputView.m */,
+			);
+			path = ChatVCtrl;
 			sourceTree = "<group>";
 		};
 		96C89213208C8997001620EA /* OtherclassLibs */ = {
@@ -393,6 +429,7 @@
 				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupKit/PopupKit.framework",
@@ -412,6 +449,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupKit.framework",
@@ -452,16 +490,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				966EC76C209AF62D00CE7E2A /* ChatVCtrl.m in Sources */,
 				964F09002087950900E397B4 /* MsgListVCtrl.m in Sources */,
 				964F09032087951400E397B4 /* PersonalVCtrl.m in Sources */,
 				96C89489208C9F84001620EA /* MessageQoSEventImpl.m in Sources */,
 				96C8948C208CB43D001620EA /* OnLoginProgress.m in Sources */,
+				966EC76F209AFA7B00CE7E2A /* ChatInputView.m in Sources */,
 				96C89483208C9F60001620EA /* ChatBaseEventImpl.m in Sources */,
 				964F08ED20871A1900E397B4 /* main.m in Sources */,
 				966EC761209AB1F900CE7E2A /* PublicMethods.m in Sources */,
 				964F08FB20872E1900E397B4 /* LoginVCtrl.m in Sources */,
+				9650F98E20A814C1005D7219 /* ChatListDB.m in Sources */,
 				96C89488208C9F84001620EA /* ChatTransDataEventImpl.m in Sources */,
 				96C89480208C9EF0001620EA /* IMClientManager.m in Sources */,
+				966EC768209ADFC300CE7E2A /* MsgListItem.m in Sources */,
 				964F090720883DDC00E397B4 /* MsgListCell.m in Sources */,
 				964F08F720872D0F00E397B4 /* QMUIConfigurationTemplate.m in Sources */,
 				964F08DF20871A1800E397B4 /* AppDelegate.m in Sources */,
@@ -610,10 +652,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/QYChat/QYChat.pch";
 				INFOPLIST_FILE = QYChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/QYChat/PublicMethods/OtherclassLibs/MobileIMSDK4iLib",
@@ -637,10 +676,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/QYChat/QYChat.pch";
 				INFOPLIST_FILE = QYChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/QYChat/PublicMethods/OtherclassLibs/MobileIMSDK4iLib",

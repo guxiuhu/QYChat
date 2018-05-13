@@ -33,18 +33,13 @@
  */
 @implementation ChatTransDataEventImpl
 
-- (void) onTransBuffer:(NSString *)fingerPrintOfProtocal withUserId:(NSString *)dwUserid andContent:(NSString *)dataContent andTypeu:(int)typeu
-{
+- (void) onTransBuffer:(NSString *)fingerPrintOfProtocal withUserId:(NSString *)dwUserid andContent:(NSString *)dataContent andTypeu:(int)typeu{
+    
     NSLog(@"【DEBUG_UI】[%d]收到来自用户%@的消息:%@", typeu, dwUserid, dataContent);
     
-    // UI显示
-    // Make toast with an image & title
-//    [[CurAppDelegate getMainView] makeToast:dataContent
-//                duration:3.0
-//                position:@"center"
-//                   title:[NSString stringWithFormat:@"%@说：", dwUserid]
-//                   image:[UIImage imageNamed:@"qzone_mark_img_myvoice.png"]];
-//    [[CurAppDelegate getMainViewController] showIMInfo_black:[NSString stringWithFormat:@"%@说：%@", dwUserid, dataContent]];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(receviedMsgWithContent:andFrom:)]) {
+        [self.delegate receviedMsgWithContent:dataContent andFrom:dwUserid];
+    }
 }
 
 - (void) onErrorResponse:(int)errorCode withErrorMsg:(NSString *)errorMsg

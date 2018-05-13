@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MsgListItem.h"
 
 @interface MsgListCell : UITableViewCell
+
+-(void)resetUIWithItem:(MsgListItem*)item;
 
 @end

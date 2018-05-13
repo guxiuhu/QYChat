@@ -23,6 +23,14 @@
 #import <Foundation/Foundation.h>
 #import "ChatTransDataEvent.h"
 
+@protocol QYChatDelegate<NSObject>
+
+-(void)receviedMsgWithContent:(NSString*)msgContent andFrom:(NSString*)from;
+
+@end
+
 @interface ChatTransDataEventImpl : NSObject <ChatTransDataEvent>
+
+@property (nonatomic, weak) id<QYChatDelegate> delegate;
 
 @end

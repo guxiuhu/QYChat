@@ -17,8 +17,15 @@
 #import <Masonry/Masonry.h>
 #import <pop/POP.h>
 #import "PublicMethods.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
 
 #define SAVE_LOGIN_USER_ACCOUNT @"save_login_account"//保存用户名
 #define SAVE_LOGIN_USER_PASSWORD @"save_login_password"//保存用户密码
+
+#define DB_NAME @"qychat.db"
+
+
+#pragma mark - 日志
+static const int ddLogLevel = DDLogLevelVerbose;
 
 #endif /* QYChat_pch */
