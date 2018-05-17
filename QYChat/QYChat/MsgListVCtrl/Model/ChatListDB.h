@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MsgListItem.h"
+#import "MsgItem.h"
 
 @interface ChatListDB : NSObject
 
@@ -15,7 +15,7 @@
 -(id)init;
 
 ///插入聊天
-- (void)insertData:(MsgListItem*)item;
+- (void)insertData:(MsgItem*)item;
 
 ///查询所有的消息列表
 -(NSMutableArray*)selectAllMsgList;

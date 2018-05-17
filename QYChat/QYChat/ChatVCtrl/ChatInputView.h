@@ -8,8 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol QYChatInputDelegate<NSObject>
+
+-(void)chatSendText:(NSString*)text;
+
+-(void)inputTextViewHeightChanged:(CGFloat)height;
+
+@end
+
 @interface ChatInputView : UIView
 
-@property (nonatomic, strong) UITextField *inputField;
+@property (nonatomic, weak) id<QYChatInputDelegate> delegate;
+
+///输入控件
+@property (nonatomic, strong) QMUITextView *inputView;
 
 @end

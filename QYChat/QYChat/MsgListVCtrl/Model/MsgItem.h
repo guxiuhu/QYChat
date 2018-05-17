@@ -8,7 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MsgListItem : NSObject
+typedef enum : NSUInteger {
+    MsgFromMe,
+    MsgFromOthers,
+} MsgFromType;
+
+@interface MsgItem : NSObject
+
+///标志是接收还是发送的消息
+@property MsgFromType msgFrom;
 
 ///消息内容
 @property (nonatomic, strong) NSString *messageContent;
@@ -16,6 +24,10 @@
 ///消息发送者
 @property (nonatomic, strong) NSString *messageFrom;
 
+///消息接收者
+@property (nonatomic, strong) NSString *messageTo;
+
 ///时间
 @property (nonatomic, strong) NSString *messageTime;
+
 @end

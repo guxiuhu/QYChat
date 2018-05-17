@@ -110,6 +110,9 @@
  */
 + (NSString *)transform:(NSString *)chinese;
 
+//获取当地时间
++(NSString *)getCurrentTime;
+
 /**
  获取时间戳
  

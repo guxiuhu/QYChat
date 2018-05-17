@@ -18,7 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.hidesBottomBarWhenPushed = NO;
+    self.title = @"我的";
 }
 
 - (void)didReceiveMemoryWarning {

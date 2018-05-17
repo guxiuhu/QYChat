@@ -256,6 +256,14 @@
     return [NSString stringWithFormat:@"%.0f",time];
 }
 
+//获取当地时间
++(NSString *)getCurrentTime{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    NSString *dateTime = [formatter stringFromDate:[NSDate date]];
+    return dateTime;
+}
+
 /**
  获取时间戳的数字
  

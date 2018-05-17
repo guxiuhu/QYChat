@@ -6,8 +6,8 @@
 //  Copyright © 2018年 古秀湖. All rights reserved.
 //
 
-#import "MsgListItem.h"
+#import "MsgItem.h"
 
-@implementation MsgListItem
+@implementation MsgItem
 
 @end

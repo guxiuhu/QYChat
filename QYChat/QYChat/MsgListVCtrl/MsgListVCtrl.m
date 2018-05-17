@@ -10,7 +10,7 @@
 #import "MsgListCell.h"
 #import "IMClientManager.h"
 #import "ChatTransDataEvent.h"
-#import "MsgListItem.h"
+#import "MsgItem.h"
 #import "ChatVCtrl.h"
 #import "ChatListDB.h"
 
@@ -33,7 +33,6 @@
     self.title = @"消息";
 
     self.sourceAry = [NSMutableArray new];
-    self.hidesBottomBarWhenPushed = NO;
     
     //列表
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -52,6 +51,34 @@
     
     //消息监听
     [[IMClientManager sharedInstance].getTransDataListener setDelegate:self];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewChatAction:)];
+}
+
+-(void)addNewChatAction:(id)sender{
+    
+    __weak __typeof(self)weakSelf = self;
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"新的聊天" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+        textField.placeholder = @"请输入对方ID";
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    }];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        UITextField *userNameField = alert.textFields.firstObject;
+
+        ChatVCtrl *chat = [[ChatVCtrl alloc] init];
+        chat.hidesBottomBarWhenPushed = YES;
+        chat.messageFrom = userNameField.text;
+        [weakSelf.navigationController pushViewController:chat animated:YES];
+        
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -75,7 +102,7 @@
         cell = [[MsgListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
-    MsgListItem *item = [self.sourceAry objectAtIndex:indexPath.row];
+    MsgItem *item = [self.sourceAry objectAtIndex:indexPath.row];
     [cell resetUIWithItem:item];
     
     return cell;
@@ -90,27 +117,29 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    MsgListItem *item = [self.sourceAry objectAtIndex:indexPath.row];
+    MsgItem *item = [self.sourceAry objectAtIndex:indexPath.row];
 
     ChatVCtrl *chat = [[ChatVCtrl alloc] init];
+    chat.hidesBottomBarWhenPushed = YES;
     chat.messageFrom = item.messageFrom;
     [self.navigationController pushViewController:chat animated:YES];
 }
 
 -(void)receviedMsgWithContent:(NSString *)msgContent andFrom:(NSString *)from{
     
-    MsgListItem *item = [[MsgListItem alloc] init];
+    MsgItem *item = [[MsgItem alloc] init];
     item.messageFrom = from;
     item.messageContent = msgContent;
-    item.messageTime = @"2012-1-1";
-    
+    item.messageTime = [PublicMethods getCurrentTime];
+    item.msgFrom = MsgFromOthers;
+
     //入库
     ChatListDB *chatListDB = [[ChatListDB alloc] init];
     [chatListDB insertData:item];
     
     for (int i = 0; i < self.sourceAry.count; i ++) {
         
-        MsgListItem *item = [self.sourceAry objectAtIndex:i];
+        MsgItem *item = [self.sourceAry objectAtIndex:i];
         if ([item.messageFrom isEqualToString:from]) {
             
             [self.sourceAry removeObjectAtIndex:i];

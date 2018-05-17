@@ -54,7 +54,7 @@ static NSString *CHAT_MSG_TIME              = @"messageTime";//最后一条消�
 }
 
 ///插入聊天
-- (void)insertData:(MsgListItem*)item{
+- (void)insertData:(MsgItem*)item{
 
     [db open];
     NSString *insertSql = [NSString stringWithFormat:
@@ -86,7 +86,7 @@ static NSString *CHAT_MSG_TIME              = @"messageTime";//最后一条消�
         while ([rs next]) {
 
             NSDictionary *tmpDic = [rs resultDictionary];
-            [ary addObject:[MsgListItem mj_objectWithKeyValues:tmpDic]];
+            [ary addObject:[MsgItem mj_objectWithKeyValues:tmpDic]];
         }
         [db close];
     }

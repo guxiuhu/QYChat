@@ -83,7 +83,7 @@
     return self;
 }
 
--(void)resetUIWithItem:(MsgListItem*)item{
+-(void)resetUIWithItem:(MsgItem*)item{
 
     [self.nameLabel setText:item.messageFrom];
     [self.contentLabel setText:item.messageContent];
