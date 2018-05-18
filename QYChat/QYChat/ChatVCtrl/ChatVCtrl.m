@@ -16,6 +16,7 @@
 #import "ChatCell.h"
 #import "LocalUDPDataSender.h"
 #import "ClientCoreSDK.h"
+#import "QDUIHelper.h"
 
 @interface ChatVCtrl ()<UITableViewDataSource,UITableViewDelegate,QMUIKeyboardManagerDelegate,QYChatDelegate,QYChatInputDelegate>
 
@@ -24,6 +25,10 @@
 @property (nonatomic, strong) UITableView *chatTableView;
 @property (nonatomic, strong) ChatInputView *chatInputView;
 @property (nonatomic, strong) NSMutableArray *sourceAry;
+
+//表情
+@property(nonatomic, strong) QMUIEmotionInputManager *emotionInputManager;
+@property BOOL emotionViewIsShowing;
 
 @end
 
@@ -66,6 +71,15 @@
     _keyboardManager = [[QMUIKeyboardManager alloc] initWithDelegate:self];
     //设置键盘只接受 self.textView 的通知事件，如果当前界面有其他 UIResponder 导致键盘产生通知事件，则不会被接受
     [self.keyboardManager addTargetResponder:self.chatInputView.inputView];
+    
+    //表情
+    self.emotionInputManager = [[QMUIEmotionInputManager alloc] init];
+    self.emotionInputManager.emotionView.emotions = [QDUIHelper qmuiEmotions];
+    self.emotionInputManager.emotionView.qmui_borderPosition = QMUIBorderViewPositionTop;
+    self.emotionInputManager.boundTextView = self.chatInputView.inputView;
+    [self.view addSubview:self.emotionInputManager.emotionView];
+    self.emotionInputManager.emotionView.frame = CGRectMake(0, self.view.bottom, SCREEN_WIDTH, 232);
+    self.emotionViewIsShowing = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -107,27 +121,12 @@
  *  键盘即将显示
  */
 - (void)keyboardWillShowWithUserInfo:(QMUIKeyboardUserInfo *)keyboardUserInfo{
-    
-    __weak __typeof(self)weakSelf = self;
-    POPBasicAnimation *baseAnimation     = [POPBasicAnimation animationWithPropertyNamed:kPOPViewFrame];
-    baseAnimation.fromValue              = [NSValue valueWithCGRect:self.chatInputView.frame];
-    baseAnimation.toValue                = [NSValue valueWithCGRect:CGRectMake(0, self.view.bottom-keyboardUserInfo.height-self.chatInputView.height, SCREEN_WIDTH, self.chatInputView.height)];
-    baseAnimation.duration               = keyboardUserInfo.animationDuration; //设置动画的间隔时间 默认是0.4秒
-    baseAnimation.repeatCount            = 1; //重复次数 HUGE_VALF设置为无限次重复
-    baseAnimation.removedOnCompletion    = YES;
-    baseAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
-      
-        if (finished) {
-            // 自动显示最后一行
-            NSInteger s = [weakSelf.chatTableView numberOfSections];
-            if (s<1) return;
-            NSInteger r = [weakSelf.chatTableView numberOfRowsInSection:s-1];
-            if (r<1) return;
-            NSIndexPath *ip = [NSIndexPath indexPathForRow:r-1 inSection:s-1];
-            [weakSelf.chatTableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-        }
-    };
-    [self.chatInputView pop_addAnimation:baseAnimation forKey:@"showKeyboardAnimation"];
+
+    if (self.emotionViewIsShowing) {
+        [self hideEmotionView];
+    }
+
+    [self handleInputViewWithHeight:self.chatInputView.height];
 }
 
 /**
@@ -135,16 +134,11 @@
  */
 - (void)keyboardWillHideWithUserInfo:(QMUIKeyboardUserInfo *)keyboardUserInfo{
     
-    [self.chatInputView.inputView resignFirstResponder];
-    [self.view endEditing:YES];
+    if (self.emotionViewIsShowing) {
+        return;
+    }
     
-    POPBasicAnimation *baseAnimation     = [POPBasicAnimation animationWithPropertyNamed:kPOPViewFrame];
-    baseAnimation.fromValue              = [NSValue valueWithCGRect:self.chatInputView.frame];
-    baseAnimation.toValue                = [NSValue valueWithCGRect:CGRectMake(0, self.view.bottom-self.chatInputView.height, SCREEN_WIDTH, self.chatInputView.height)];
-    baseAnimation.duration               = keyboardUserInfo.animationDuration; //设置动画的间隔时间 默认是0.4秒
-    baseAnimation.repeatCount            = 1; //重复次数 HUGE_VALF设置为无限次重复
-    baseAnimation.removedOnCompletion    = YES;
-    [self.chatInputView pop_addAnimation:baseAnimation forKey:@"hideKeyboardAnimation"];
+    [self handleInputViewWithHeight:self.chatInputView.height];
 }
 
 - (BOOL)shouldHideKeyboardWhenTouchInView:(UIView *)view {
@@ -157,6 +151,21 @@
 }
 
 #pragma mark - QYChatDelegate
+- (void)tableViewScrollToBottom {
+    
+    // 自动显示最后一行
+    NSInteger s = [self.chatTableView numberOfSections];
+    if (s<1) return;
+    NSInteger r = [self.chatTableView numberOfRowsInSection:s-1];
+    if (r<1) return;
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:r-1 inSection:s-1];
+    
+    //先判断是不是在最后
+    if (![self.chatTableView qmui_cellVisibleAtIndexPath:ip]) {
+        [self.chatTableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
+}
+
 -(void)receviedMsgWithContent:(NSString *)msgContent andFrom:(NSString *)from{
     
     MsgItem *item = [[MsgItem alloc] init];
@@ -166,16 +175,9 @@
     item.msgFrom = MsgFromOthers;
     
     [self.sourceAry addObject:item];
+    
     [self.chatTableView reloadData];
-
-    // 自动显示最后一行
-    NSInteger s = [self.chatTableView numberOfSections];
-    if (s<1) return;
-    NSInteger r = [self.chatTableView numberOfRowsInSection:s-1];
-    if (r<1) return;
-    NSIndexPath *ip = [NSIndexPath indexPathForRow:r-1 inSection:s-1];
-    [self.chatTableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-
+    [self tableViewScrollToBottom];
 }
 
 #pragma mark - QYChatInputDelegate
@@ -194,14 +196,7 @@
         [self.sourceAry addObject:item];
         [self.chatTableView reloadData];
         
-        // 自动显示最后一行
-        NSInteger s = [self.chatTableView numberOfSections];
-        if (s<1) return;
-        NSInteger r = [self.chatTableView numberOfRowsInSection:s-1];
-        if (r<1) return;
-        NSIndexPath *ip = [NSIndexPath indexPathForRow:r-1 inSection:s-1];
-        [self.chatTableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-
+        [self tableViewScrollToBottom];
     }else{
         
         NSString *msg = [NSString stringWithFormat:@"您的消息发送失败，错误码：%d", code];
@@ -215,23 +210,70 @@
         return;
     }
     
-    if (height > 150) {
-        height = 150;
+    //最高100
+    if (height > 100) {
+        height = 100;
     }
+    
+    //最低50
+    if (height < 50) {
+        height = 50;
+    }
+
+    [self handleInputViewWithHeight:height];
+}
+
+- (void)clickEmotionBtn{
+    
+    if (self.emotionViewIsShowing) {
+        [self hideEmotionView];
+    } else {
+        [self showEmotionView];
+    }
+    
+    [self handleInputViewWithHeight:self.chatInputView.height];
+}
+
+///显示表情面板
+-(void)showEmotionView{
+    
+    self.emotionViewIsShowing = YES;
+    [self.chatInputView.inputView resignFirstResponder];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        self.emotionInputManager.emotionView.frame = CGRectMake(0, self.view.bottom-232, SCREEN_WIDTH, 232);
+    }];
+}
+
+///隐藏表情面板
+-(void)hideEmotionView{
+    
+    self.emotionViewIsShowing = NO;
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        self.emotionInputManager.emotionView.frame = CGRectMake(0, self.view.bottom, SCREEN_WIDTH, 232);
+    }];
+}
+
+-(void)handleInputViewWithHeight:(CGFloat)height{
     
     [self.chatInputView pop_removeAllAnimations];
     
+    __weak __typeof(self)weakSelf = self;
     BOOL isKeyboardVisible = [QMUIKeyboardManager isKeyboardVisible];
     CGFloat keyboardHeight = [QMUIKeyboardManager visiableKeyboardHeight];
-    CGFloat y = isKeyboardVisible?(self.view.bottom-keyboardHeight-height):(self.view.bottom-height);
+    CGFloat y = isKeyboardVisible?(self.view.bottom-keyboardHeight-height):(self.emotionViewIsShowing?(self.view.bottom-232-height):(self.view.bottom-height));
     
     POPBasicAnimation *baseAnimation     = [POPBasicAnimation animationWithPropertyNamed:kPOPViewFrame];
     baseAnimation.fromValue              = [NSValue valueWithCGRect:self.chatInputView.frame];
     baseAnimation.toValue                = [NSValue valueWithCGRect:CGRectMake(0, y, SCREEN_WIDTH, height)];
-    baseAnimation.duration               = 0.1;
+    baseAnimation.duration               = 0.2;
     baseAnimation.repeatCount            = 1; //重复次数 HUGE_VALF设置为无限次重复
     baseAnimation.removedOnCompletion    = YES;
+    baseAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+        
+        [weakSelf tableViewScrollToBottom];
+    };
     [self.chatInputView pop_addAnimation:baseAnimation forKey:@"textViewHeightChanged"];
-
 }
 @end

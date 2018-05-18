@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "IMClientManager.h"
+#import "QDUIHelper.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +21,11 @@
     // Override point for customization after application launch.
     
     [[IMClientManager sharedInstance] initMobileIMSDK];
+
+    // 预加载表情，避免第一次使用时卡顿
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [QDUIHelper qmuiEmotions];
+    });
 
     return YES;
 }

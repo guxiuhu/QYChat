@@ -10,7 +10,11 @@
 
 @protocol QYChatInputDelegate<NSObject>
 
+///发送文字消息
 -(void)chatSendText:(NSString*)text;
+
+///点击表情按钮
+-(void)clickEmotionBtn;
 
 -(void)inputTextViewHeightChanged:(CGFloat)height;
 

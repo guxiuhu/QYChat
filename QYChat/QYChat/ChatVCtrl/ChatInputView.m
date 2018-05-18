@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) UIButton *moreBtn;
 
+@property (nonatomic, strong) UIButton *voiceBtn;
+
 @end
 
 @implementation ChatInputView
@@ -30,22 +32,34 @@
         [self addSubview:self.moreBtn];
         [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
            
-            make.right.equalTo(self).with.offset(-20);
-            make.width.and.height.mas_equalTo(40);
-            make.bottom.equalTo(self).with.offset(-5);
+            make.right.equalTo(self).with.offset(-10);
+            make.width.and.height.mas_equalTo(30);
+            make.bottom.equalTo(self).with.offset(-10);
         }];
         
         //表情
         self.faceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.faceBtn addTarget:self action:@selector(emotionAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.faceBtn setImage:[UIImage imageNamed:@"input_face"] forState:UIControlStateNormal];
         [self addSubview:self.faceBtn];
         [self.faceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.right.equalTo(self.moreBtn.mas_left).with.offset(-10);
-            make.bottom.equalTo(self).with.offset(-5);
-            make.width.and.height.mas_equalTo(40);
+            make.width.and.height.mas_equalTo(30);
+            make.centerY.equalTo(self.moreBtn);
         }];
  
+        //语音
+        self.voiceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.voiceBtn setImage:[UIImage imageNamed:@"input_voice"] forState:UIControlStateNormal];
+        [self addSubview:self.voiceBtn];
+        [self.voiceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.centerY.equalTo(self.moreBtn);
+            make.width.and.height.mas_equalTo(30);
+            make.left.equalTo(self).with.offset(10);
+        }];
+        
         //输入框
         self.inputView = [[QMUITextView alloc] init];
         [self.inputView setBackgroundColor:UI_BASE_COLOR];
@@ -64,8 +78,18 @@
            
             make.top.equalTo(self).with.offset(5);
             make.bottom.equalTo(self).with.offset(-5);
-            make.left.equalTo(self).with.offset(15);
+            make.left.equalTo(self.voiceBtn.mas_right).with.offset(5);
             make.right.equalTo(self.faceBtn.mas_left).with.offset(-10);
+        }];
+        
+        //画条线
+        UIView *lineView = [UIView new];
+        [lineView setBackgroundColor:UIColorWhite];
+        [self addSubview:lineView];
+        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.and.right.bottom.equalTo(self.inputView);
+            make.height.mas_equalTo(PixelOne);
         }];
     }
     return self;
@@ -88,6 +112,14 @@
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(inputTextViewHeightChanged:)]) {
         [self.delegate inputTextViewHeightChanged:height+10];
+    }
+}
+
+///点击表情按钮
+-(void)emotionAction:(id)sender{
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(clickEmotionBtn)]) {
+        [self.delegate clickEmotionBtn];
     }
 }
 @end
