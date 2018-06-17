@@ -62,7 +62,15 @@
         [self.contentView addSubview:self.photoImgView];
         
         //内容区
+        NSMutableDictionary *mapper = [NSMutableDictionary new];
+        for (int i = 1; i <= 80; i ++) {
+            mapper[[NSString stringWithFormat:@"[face%02d]",i]] = [UIImage imageNamed:[NSString stringWithFormat:@"[face%02d]",i]];
+        }
+        YYTextSimpleEmoticonParser *parser = [[YYTextSimpleEmoticonParser alloc] init];
+        parser.emoticonMapper = mapper;
+
         self.contentLabel = [YYLabel new];
+        self.contentLabel.textParser = parser;
         [self.contentLabel setNumberOfLines:0];
         [self.contentLabel setTextColor:UIColorMakeWithHex(@"#353535")];
         [self.contentLabel setText:@"Hello World"];

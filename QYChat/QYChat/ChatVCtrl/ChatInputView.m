@@ -7,8 +7,9 @@
 //
 
 #import "ChatInputView.h"
+#import <YYCategories/YYCategories.h>
 
-@interface ChatInputView()<QMUITextViewDelegate>
+@interface ChatInputView()<YYTextViewDelegate>
 
 @property (nonatomic, strong) UIButton *faceBtn;
 
@@ -60,27 +61,26 @@
             make.left.equalTo(self).with.offset(10);
         }];
         
+        //表情
+        NSMutableDictionary *mapper = [NSMutableDictionary new];
+        for (int i = 1; i <= 80; i ++) {
+            mapper[[NSString stringWithFormat:@"[face%02d]",i]] = [UIImage imageNamed:[NSString stringWithFormat:@"[face%02d]",i]];
+        }
+        YYTextSimpleEmoticonParser *parser = [[YYTextSimpleEmoticonParser alloc] init];
+        parser.emoticonMapper = mapper;
+        
         //输入框
-        self.inputView = [[QMUITextView alloc] init];
-        [self.inputView setBackgroundColor:UI_BASE_COLOR];
-        [self.inputView setPlaceholderColor:UIColorMakeWithHex(@"#fafafa")];
-        [self.inputView setPlaceholder:@"请输入..."];
-        [self.inputView setFont:UIFontMake(18)];
-        [self.inputView setTintColor:UIColorWhite];
-        [self.inputView setReturnKeyType:UIReturnKeySend];
-        [self.inputView setDelegate:self];
-        self.inputView.autoResizable = YES;
-        [self.inputView setTextColor:UIColorWhite];
-        [self.inputView setShowsVerticalScrollIndicator:NO];
-        [self.inputView setShowsHorizontalScrollIndicator:NO];
-        [self addSubview:self.inputView];
-        [self.inputView mas_makeConstraints:^(MASConstraintMaker *make) {
-           
-            make.top.equalTo(self).with.offset(5);
-            make.bottom.equalTo(self).with.offset(-5);
-            make.left.equalTo(self.voiceBtn.mas_right).with.offset(5);
-            make.right.equalTo(self.faceBtn.mas_left).with.offset(-10);
-        }];
+        self.textView = [[YYTextView alloc] initWithFrame:CGRectMake(10+30+5, 5, SCREEN_WIDTH-10-30-5-10-30-10-30-10, 40)];
+        [self.textView setBackgroundColor:UI_BASE_COLOR];
+        [self.textView setPlaceholderFont:UIFontMake(18)];
+        [self.textView setPlaceholderTextColor:UIColorMakeWithHex(@"#fafafa")];
+        [self.textView setPlaceholderText:@"请输入..."];
+        [self.textView setFont:UIFontMake(18)];
+        [self.textView setTintColor:UIColorWhite];
+        [self.textView setDelegate:self];
+        [self.textView setTextColor:UIColorWhite];
+        self.textView.textParser = parser;
+        [self addSubview:self.textView];
         
         //画条线
         UIView *lineView = [UIView new];
@@ -88,30 +88,25 @@
         [self addSubview:lineView];
         [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
            
-            make.left.and.right.bottom.equalTo(self.inputView);
+            make.left.and.right.bottom.equalTo(self.textView);
             make.height.mas_equalTo(PixelOne);
         }];
     }
     return self;
 }
 
--(BOOL)textViewShouldReturn:(QMUITextView *)textView{
+- (BOOL)textView:(YYTextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     
-    if (![textView.text isEqualToString:@""]) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(chatSendText:)]) {
-            [self.delegate chatSendText:textView.text];
+    if ([text isEqualToString:@"\n"]) {
+        if (![textView.text isEqualToString:@""]) {
+            if (self.delegate && [self.delegate respondsToSelector:@selector(chatSendText:)]) {
+                [self.delegate chatSendText:textView.text];
+            }
         }
-        
-        [textView setText:@""];
-    }
-    
-    return YES;
-}
 
--(void)textView:(QMUITextView *)textView newHeightAfterTextChanged:(CGFloat)height{
-    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(inputTextViewHeightChanged:)]) {
-        [self.delegate inputTextViewHeightChanged:height+10];
+        return NO;
+    } else {
+        return YES;
     }
 }
 

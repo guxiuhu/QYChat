@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <YYText/YYText.h>
 
 @protocol QYChatInputDelegate<NSObject>
 
@@ -25,6 +26,6 @@
 @property (nonatomic, weak) id<QYChatInputDelegate> delegate;
 
 ///输入控件
-@property (nonatomic, strong) QMUITextView *inputView;
+@property (nonatomic, strong) YYTextView *textView;
 
 @end

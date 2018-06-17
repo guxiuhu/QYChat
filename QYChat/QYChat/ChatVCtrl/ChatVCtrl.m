@@ -16,9 +16,11 @@
 #import "ChatCell.h"
 #import "LocalUDPDataSender.h"
 #import "ClientCoreSDK.h"
-#import "QDUIHelper.h"
+#import "AGEmojiKeyBoardView.h"
 
-@interface ChatVCtrl ()<UITableViewDataSource,UITableViewDelegate,QMUIKeyboardManagerDelegate,QYChatDelegate,QYChatInputDelegate>
+#define EMOTHION_HEIGHT 260
+
+@interface ChatVCtrl ()<UITableViewDataSource,UITableViewDelegate,QMUIKeyboardManagerDelegate,QYChatDelegate,QYChatInputDelegate,AGEmojiKeyboardViewDataSource,AGEmojiKeyboardViewDelegate>
 
 @property(nonatomic, strong) QMUIKeyboardManager *keyboardManager;
 
@@ -26,8 +28,8 @@
 @property (nonatomic, strong) ChatInputView *chatInputView;
 @property (nonatomic, strong) NSMutableArray *sourceAry;
 
-//表情
-@property(nonatomic, strong) QMUIEmotionInputManager *emotionInputManager;
+///表情
+@property (strong, nonatomic) AGEmojiKeyboardView *emojiKeyboardView;
 @property BOOL emotionViewIsShowing;
 
 @end
@@ -70,15 +72,10 @@
     
     _keyboardManager = [[QMUIKeyboardManager alloc] initWithDelegate:self];
     //设置键盘只接受 self.textView 的通知事件，如果当前界面有其他 UIResponder 导致键盘产生通知事件，则不会被接受
-    [self.keyboardManager addTargetResponder:self.chatInputView.inputView];
+    [self.keyboardManager addTargetResponder:self.chatInputView.textView];
     
     //表情
-    self.emotionInputManager = [[QMUIEmotionInputManager alloc] init];
-    self.emotionInputManager.emotionView.emotions = [QDUIHelper qmuiEmotions];
-    self.emotionInputManager.emotionView.qmui_borderPosition = QMUIBorderViewPositionTop;
-    self.emotionInputManager.boundTextView = self.chatInputView.inputView;
-    [self.view addSubview:self.emotionInputManager.emotionView];
-    self.emotionInputManager.emotionView.frame = CGRectMake(0, self.view.bottom, SCREEN_WIDTH, 232);
+    [self.view addSubview:self.emojiKeyboardView];
     self.emotionViewIsShowing = NO;
 }
 
@@ -137,6 +134,12 @@
     if (self.emotionViewIsShowing) {
         return;
     }
+    
+    [self.chatInputView.textView resignFirstResponder];
+    [self.chatInputView.textView endEditing:YES];
+    [self.view endEditing:YES];
+    [self.chatInputView resignFirstResponder];
+    [self.chatInputView endEditing:YES];
     
     [self handleInputViewWithHeight:self.chatInputView.height];
 }
@@ -197,6 +200,8 @@
         [self.chatTableView reloadData];
         
         [self tableViewScrollToBottom];
+        
+        [self.chatInputView.textView setText:@""];
     }else{
         
         NSString *msg = [NSString stringWithFormat:@"您的消息发送失败，错误码：%d", code];
@@ -205,11 +210,7 @@
 }
 
 -(void)inputTextViewHeightChanged:(CGFloat)height{
-    
-    if (height == self.chatInputView.frame.size.height) {
-        return;
-    }
-    
+        
     //最高100
     if (height > 100) {
         height = 100;
@@ -238,10 +239,10 @@
 -(void)showEmotionView{
     
     self.emotionViewIsShowing = YES;
-    [self.chatInputView.inputView resignFirstResponder];
+    [self.chatInputView.textView resignFirstResponder];
     
     [UIView animateWithDuration:0.2 animations:^{
-        self.emotionInputManager.emotionView.frame = CGRectMake(0, self.view.bottom-232, SCREEN_WIDTH, 232);
+        self.emojiKeyboardView.frame = CGRectMake(0, self.view.bottom-EMOTHION_HEIGHT, SCREEN_WIDTH, EMOTHION_HEIGHT);
     }];
 }
 
@@ -249,9 +250,10 @@
 -(void)hideEmotionView{
     
     self.emotionViewIsShowing = NO;
-    
+    [self.chatInputView.textView becomeFirstResponder];
+
     [UIView animateWithDuration:0.2 animations:^{
-        self.emotionInputManager.emotionView.frame = CGRectMake(0, self.view.bottom, SCREEN_WIDTH, 232);
+        self.emojiKeyboardView.frame = CGRectMake(0, self.view.bottom, SCREEN_WIDTH, EMOTHION_HEIGHT);
     }];
 }
 
@@ -262,18 +264,55 @@
     __weak __typeof(self)weakSelf = self;
     BOOL isKeyboardVisible = [QMUIKeyboardManager isKeyboardVisible];
     CGFloat keyboardHeight = [QMUIKeyboardManager visiableKeyboardHeight];
-    CGFloat y = isKeyboardVisible?(self.view.bottom-keyboardHeight-height):(self.emotionViewIsShowing?(self.view.bottom-232-height):(self.view.bottom-height));
+    CGFloat y = isKeyboardVisible?(self.view.bottom-keyboardHeight-height):(self.emotionViewIsShowing?(self.view.bottom-EMOTHION_HEIGHT-height):(self.view.bottom-height));
     
-    POPBasicAnimation *baseAnimation     = [POPBasicAnimation animationWithPropertyNamed:kPOPViewFrame];
-    baseAnimation.fromValue              = [NSValue valueWithCGRect:self.chatInputView.frame];
-    baseAnimation.toValue                = [NSValue valueWithCGRect:CGRectMake(0, y, SCREEN_WIDTH, height)];
-    baseAnimation.duration               = 0.2;
-    baseAnimation.repeatCount            = 1; //重复次数 HUGE_VALF设置为无限次重复
+    POPSpringAnimation *baseAnimation     = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
+    baseAnimation.fromValue              = [NSValue valueWithCGPoint:CGPointMake(self.view.centerX, self.chatInputView.centerY)];
+    baseAnimation.toValue                = [NSValue valueWithCGPoint:CGPointMake(self.view.centerX, y+height/2)];
     baseAnimation.removedOnCompletion    = YES;
     baseAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
-        
+
         [weakSelf tableViewScrollToBottom];
     };
-    [self.chatInputView pop_addAnimation:baseAnimation forKey:@"textViewHeightChanged"];
+    [self.chatInputView pop_addAnimation:baseAnimation forKey:@"textViewCenterChanged"];
+    
+    //大小
+    self.chatInputView.height = height;
+    [weakSelf tableViewScrollToBottom];
 }
+
+#pragma mark - 表情
+
+-(AGEmojiKeyboardView *)emojiKeyboardView{
+    
+    if (!_emojiKeyboardView) {
+        _emojiKeyboardView = [[AGEmojiKeyboardView alloc] initWithFrame:CGRectMake(0, self.view.bottom, SCREEN_WIDTH, EMOTHION_HEIGHT)
+                                                             dataSource:self];
+        _emojiKeyboardView.delegate = self;
+        
+    }
+    
+    return _emojiKeyboardView;
+}
+
+- (void)emojiKeyBoardView:(AGEmojiKeyboardView *)emojiKeyBoardView didUseEmoji:(NSString *)emoji {
+    
+    [self.chatInputView.textView replaceRange:self.chatInputView.textView.selectedTextRange withText:emoji];
+}
+
+-(void)emojiKeyBoardViewDidPressSend:(AGEmojiKeyboardView *)emojiKeyBoardView{
+
+    [self chatSendText:[self.chatInputView.textView.text qmui_trim]];
+}
+
+- (void)emojiKeyBoardViewDidPressBackSpace:(AGEmojiKeyboardView *)emojiKeyBoardView {
+    
+    [self.chatInputView.textView deleteBackward];
+}
+
+- (UIImage *)backSpaceButtonImageForEmojiKeyboardView:(AGEmojiKeyboardView *)emojiKeyboardView {
+    
+    return [UIImage imageNamed:@"emoji_delete"];
+}
+
 @end

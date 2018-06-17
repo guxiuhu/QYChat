@@ -27,9 +27,6 @@
 		966EC768209ADFC300CE7E2A /* MsgItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 966EC766209ADFC200CE7E2A /* MsgItem.m */; };
 		966EC76C209AF62D00CE7E2A /* ChatVCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 966EC76B209AF62D00CE7E2A /* ChatVCtrl.m */; };
 		966EC76F209AFA7B00CE7E2A /* ChatInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 966EC76E209AFA7B00CE7E2A /* ChatInputView.m */; };
-		969FC2B020AE79A900C83766 /* QDUIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 969FC2AE20AE79A900C83766 /* QDUIHelper.m */; };
-		969FC2B420AE7AD800C83766 /* QDThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 969FC2B220AE7AD800C83766 /* QDThemeManager.m */; };
-		969FC2B720AE7AFD00C83766 /* QDCommonUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 969FC2B520AE7AFC00C83766 /* QDCommonUI.m */; };
 		969FC35A20AEAF0900C83766 /* [face37].png in Resources */ = {isa = PBXBuildFile; fileRef = 969FC2B920AEAF0800C83766 /* [face37].png */; };
 		969FC35B20AEAF0900C83766 /* [face60].png in Resources */ = {isa = PBXBuildFile; fileRef = 969FC2BA20AEAF0800C83766 /* [face60].png */; };
 		969FC35C20AEAF0900C83766 /* [face76].png in Resources */ = {isa = PBXBuildFile; fileRef = 969FC2BB20AEAF0800C83766 /* [face76].png */; };
@@ -190,6 +187,8 @@
 		969FC3F820AEAF0900C83766 /* [face18].png in Resources */ = {isa = PBXBuildFile; fileRef = 969FC35720AEAF0900C83766 /* [face18].png */; };
 		969FC3F920AEAF0900C83766 /* [face59]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 969FC35820AEAF0900C83766 /* [face59]@2x.png */; };
 		969FC3FA20AEAF0900C83766 /* [face49]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 969FC35920AEAF0900C83766 /* [face49]@2x.png */; };
+		969FC40120AEBB4200C83766 /* AGEmojiKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 969FC3FF20AEBB4200C83766 /* AGEmojiKeyBoardView.m */; };
+		969FC40220AEBB4200C83766 /* AGEmojiPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 969FC40020AEBB4200C83766 /* AGEmojiPageView.m */; };
 		96C8947D208C9E16001620EA /* libMobileIMSDK4iX_common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C8947C208C9E16001620EA /* libMobileIMSDK4iX_common.a */; };
 		96C89480208C9EF0001620EA /* IMClientManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C8947E208C9EF0001620EA /* IMClientManager.m */; };
 		96C89483208C9F60001620EA /* ChatBaseEventImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C89481208C9F60001620EA /* ChatBaseEventImpl.m */; };
@@ -234,13 +233,6 @@
 		966EC76B209AF62D00CE7E2A /* ChatVCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatVCtrl.m; sourceTree = "<group>"; };
 		966EC76D209AFA7B00CE7E2A /* ChatInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatInputView.h; sourceTree = "<group>"; };
 		966EC76E209AFA7B00CE7E2A /* ChatInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatInputView.m; sourceTree = "<group>"; };
-		969FC2AE20AE79A900C83766 /* QDUIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QDUIHelper.m; sourceTree = "<group>"; };
-		969FC2AF20AE79A900C83766 /* QDUIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QDUIHelper.h; sourceTree = "<group>"; };
-		969FC2B120AE7AD700C83766 /* QDThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QDThemeManager.h; sourceTree = "<group>"; };
-		969FC2B220AE7AD800C83766 /* QDThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QDThemeManager.m; sourceTree = "<group>"; };
-		969FC2B320AE7AD800C83766 /* QDThemeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QDThemeProtocol.h; sourceTree = "<group>"; };
-		969FC2B520AE7AFC00C83766 /* QDCommonUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QDCommonUI.m; sourceTree = "<group>"; };
-		969FC2B620AE7AFC00C83766 /* QDCommonUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QDCommonUI.h; sourceTree = "<group>"; };
 		969FC2B920AEAF0800C83766 /* [face37].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[face37].png"; sourceTree = "<group>"; };
 		969FC2BA20AEAF0800C83766 /* [face60].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[face60].png"; sourceTree = "<group>"; };
 		969FC2BB20AEAF0800C83766 /* [face76].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[face76].png"; sourceTree = "<group>"; };
@@ -401,6 +393,10 @@
 		969FC35720AEAF0900C83766 /* [face18].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[face18].png"; sourceTree = "<group>"; };
 		969FC35820AEAF0900C83766 /* [face59]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[face59]@2x.png"; sourceTree = "<group>"; };
 		969FC35920AEAF0900C83766 /* [face49]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[face49]@2x.png"; sourceTree = "<group>"; };
+		969FC3FD20AEBB4200C83766 /* AGEmojiKeyBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGEmojiKeyBoardView.h; sourceTree = "<group>"; };
+		969FC3FE20AEBB4200C83766 /* AGEmojiPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGEmojiPageView.h; sourceTree = "<group>"; };
+		969FC3FF20AEBB4200C83766 /* AGEmojiKeyBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGEmojiKeyBoardView.m; sourceTree = "<group>"; };
+		969FC40020AEBB4200C83766 /* AGEmojiPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGEmojiPageView.m; sourceTree = "<group>"; };
 		96C89462208C9E16001620EA /* PKeepAliveResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKeepAliveResponse.h; sourceTree = "<group>"; };
 		96C89463208C9E16001620EA /* NSMutableDictionary+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Ext.h"; sourceTree = "<group>"; };
 		96C89464208C9E16001620EA /* LocalUDPDataReciever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalUDPDataReciever.h; sourceTree = "<group>"; };
@@ -516,13 +512,6 @@
 		964F08F420872CF300E397B4 /* PublicMethods */ = {
 			isa = PBXGroup;
 			children = (
-				969FC2B620AE7AFC00C83766 /* QDCommonUI.h */,
-				969FC2B520AE7AFC00C83766 /* QDCommonUI.m */,
-				969FC2B120AE7AD700C83766 /* QDThemeManager.h */,
-				969FC2B220AE7AD800C83766 /* QDThemeManager.m */,
-				969FC2B320AE7AD800C83766 /* QDThemeProtocol.h */,
-				969FC2AF20AE79A900C83766 /* QDUIHelper.h */,
-				969FC2AE20AE79A900C83766 /* QDUIHelper.m */,
 				966EC75F209AB1F900CE7E2A /* PublicMethods.h */,
 				966EC760209AB1F900CE7E2A /* PublicMethods.m */,
 				96C89213208C8997001620EA /* OtherclassLibs */,
@@ -763,9 +752,21 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		969FC3FC20AEBB4200C83766 /* AGEmojiKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				969FC3FD20AEBB4200C83766 /* AGEmojiKeyBoardView.h */,
+				969FC3FE20AEBB4200C83766 /* AGEmojiPageView.h */,
+				969FC3FF20AEBB4200C83766 /* AGEmojiKeyBoardView.m */,
+				969FC40020AEBB4200C83766 /* AGEmojiPageView.m */,
+			);
+			path = AGEmojiKeyboard;
+			sourceTree = "<group>";
+		};
 		96C89213208C8997001620EA /* OtherclassLibs */ = {
 			isa = PBXGroup;
 			children = (
+				969FC3FC20AEBB4200C83766 /* AGEmojiKeyboard */,
 				96C8945E208C9E16001620EA /* MobileIMSDK4iLib */,
 			);
 			path = OtherclassLibs;
@@ -1177,18 +1178,17 @@
 				966EC76F209AFA7B00CE7E2A /* ChatInputView.m in Sources */,
 				96C89483208C9F60001620EA /* ChatBaseEventImpl.m in Sources */,
 				964F08ED20871A1900E397B4 /* main.m in Sources */,
-				969FC2B020AE79A900C83766 /* QDUIHelper.m in Sources */,
-				969FC2B420AE7AD800C83766 /* QDThemeManager.m in Sources */,
 				966EC761209AB1F900CE7E2A /* PublicMethods.m in Sources */,
 				964F08FB20872E1900E397B4 /* LoginVCtrl.m in Sources */,
 				9650F98E20A814C1005D7219 /* ChatListDB.m in Sources */,
 				96C89488208C9F84001620EA /* ChatTransDataEventImpl.m in Sources */,
 				96C89480208C9EF0001620EA /* IMClientManager.m in Sources */,
+				969FC40120AEBB4200C83766 /* AGEmojiKeyBoardView.m in Sources */,
 				966EC768209ADFC300CE7E2A /* MsgItem.m in Sources */,
 				964F090720883DDC00E397B4 /* MsgListCell.m in Sources */,
+				969FC40220AEBB4200C83766 /* AGEmojiPageView.m in Sources */,
 				964F08F720872D0F00E397B4 /* QMUIConfigurationTemplate.m in Sources */,
 				964F08DF20871A1800E397B4 /* AppDelegate.m in Sources */,
-				969FC2B720AE7AFD00C83766 /* QDCommonUI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1334,10 +1334,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/QYChat/QYChat.pch";
 				INFOPLIST_FILE = QYChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/QYChat/PublicMethods/OtherclassLibs/MobileIMSDK4iLib",
@@ -1361,10 +1358,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/QYChat/QYChat.pch";
 				INFOPLIST_FILE = QYChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/QYChat/PublicMethods/OtherclassLibs/MobileIMSDK4iLib",
